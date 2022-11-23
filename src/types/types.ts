@@ -7,3 +7,8 @@ export interface User {
 export interface UserState extends User {
   isLogged: boolean;
 }
+
+export interface JwtPayloadCustom {
+  id: string;
+  username: string;
+}
