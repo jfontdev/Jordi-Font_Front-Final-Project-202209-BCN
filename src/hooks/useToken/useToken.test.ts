@@ -72,4 +72,22 @@ describe("Given a useToken custom hook", () => {
       expect(mockLocalStorage.getItem("token")).toBe(undefined);
     });
   });
+
+  describe("When it's method getToken it's called and there is not a token in localStorage", () => {
+    test("Then the property of 'token' of the localStorage should be 'undefined'", () => {
+      mockLocalStorage.clear();
+
+      const {
+        result: {
+          current: { getToken },
+        },
+      } = renderHook(() => useToken(), {
+        wrapper: ProviderWrapper,
+      });
+
+      getToken();
+
+      expect(mockLocalStorage.getItem("token")).toBe(undefined);
+    });
+  });
 });
