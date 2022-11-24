@@ -12,3 +12,12 @@ export interface JwtPayloadCustom {
   id: string;
   username: string;
 }
+
+export interface UserCredentials {
+  username: string;
+  password: string;
+}
+
+export interface LoginResponse {
+  token: string;
+}
