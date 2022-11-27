@@ -3,6 +3,10 @@ import "styled-components";
 declare module "styled-components" {
   export interface DefaultTheme {
     colors: {
+      input: {
+        border: string;
+        background: string;
+      };
       header: {
         light: string;
         dark: string;
@@ -44,6 +48,19 @@ declare module "styled-components" {
         padding: string;
         borderRadius: string;
       };
+    };
+    pxToRem: (value: number) => {};
+    grid: {
+      container: {
+        xl: string;
+      };
+      paddingX: string;
+    };
+    screens: {
+      sm: string;
+      md: string;
+      lg: string;
+      xl: string;
     };
   }
 }
