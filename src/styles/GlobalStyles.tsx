@@ -39,7 +39,7 @@ font-family: ${mainTheme.font.mainFont};
 .col-6 {
   flex: 0 0 auto;
   width: 25%;
- }
+}
 
 @media (min-width: ${mainTheme.screens.xl}) {
   .container {
