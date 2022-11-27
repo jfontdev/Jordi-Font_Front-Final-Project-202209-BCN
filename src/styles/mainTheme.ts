@@ -2,6 +2,10 @@ import { DefaultTheme } from "styled-components";
 
 const mainTheme: DefaultTheme = {
   colors: {
+    input: {
+      border: "#14142b",
+      background: "#f7f7fc",
+    },
     header: {
       light: "#0795e6",
       dark: "#003452",
@@ -43,6 +47,19 @@ const mainTheme: DefaultTheme = {
   },
   font: {
     mainFont: "Poppins",
+  },
+  pxToRem: (value: number): string => `${value / 16}rem`,
+  grid: {
+    container: {
+      xl: "1304px",
+    },
+    paddingX: "1rem",
+  },
+  screens: {
+    sm: "640px",
+    md: "768px",
+    lg: "1024px",
+    xl: "1280px",
   },
 };
 
