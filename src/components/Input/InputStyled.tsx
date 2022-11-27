@@ -2,7 +2,7 @@ import styled from "styled-components";
 import mainTheme from "../../styles/mainTheme";
 
 const InputStyled = styled.input`
-  &:not(.radio) {
+  &:not([type="radio"]) {
     display: block;
     border: 2px solid ${mainTheme.colors.input.border};
     border-radius: 16px;
@@ -19,7 +19,7 @@ const InputStyled = styled.input`
   &:focus {
     border-color: ${mainTheme.colors.letter.dark};
   }
-  &.radio {
+  &[type="radio"] {
     appearance: none;
     &:checked {
       & + span {
@@ -27,7 +27,7 @@ const InputStyled = styled.input`
       }
     }
   }
-  &.file {
+  &[type="file"] {
     cursor: pointer;
     &::file-selector-button {
       background-color: transparent;
