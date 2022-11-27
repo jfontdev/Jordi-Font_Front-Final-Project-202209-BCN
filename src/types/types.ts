@@ -21,3 +21,7 @@ export interface UserCredentials {
 export interface LoginResponse {
   token: string;
 }
+
+export interface UiState {
+  modal: string;
+}
