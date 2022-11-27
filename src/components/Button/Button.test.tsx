@@ -7,7 +7,7 @@ describe("Given a Button component", () => {
     test("Then it should return a button with the text 'Login'", () => {
       const expectedText = "Login";
 
-      render(<Button text="Login" action={() => {}} />);
+      render(<Button text="Login" action={() => {}} type="submit" />);
 
       const button = screen.queryByRole("button");
 
@@ -16,10 +16,10 @@ describe("Given a Button component", () => {
   });
 
   describe("When it rendered with an action 'buttonAction'", () => {
-    test("Then it shoudl call that action onClick", async () => {
+    test("Then it should call that action onClick", async () => {
       const buttonAction = jest.fn();
 
-      render(<Button text="" action={buttonAction} />);
+      render(<Button text="" action={buttonAction} type="button" />);
       const renderedButton = screen.queryByRole("button");
 
       await userEvent.click(renderedButton!);
