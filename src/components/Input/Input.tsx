@@ -1,11 +1,14 @@
+import React from "react";
 import InputStyled from "./InputStyled";
 
 interface InputProps {
+  classname?: string;
   id?: string;
   name?: string;
   placeholder?: string;
   type: string;
   autoComplete?: "on" | "off";
+  onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 const Input = ({
@@ -14,6 +17,8 @@ const Input = ({
   placeholder,
   type,
   autoComplete,
+  onChange,
+  classname,
 }: InputProps): JSX.Element => {
   return (
     <InputStyled
@@ -22,7 +27,8 @@ const Input = ({
       placeholder={placeholder}
       type={type}
       autoComplete={autoComplete}
-      className={type}
+      className={classname}
+      onChange={onChange}
     />
   );
 };
