@@ -1,6 +1,11 @@
 import { renderHook } from "@testing-library/react";
 import mockLocalStorage from "../../mocks/localStorage/mockLocalStorage";
 import {
+  mockRegisteredUser,
+  mockUserRegister,
+} from "../../mocks/user/mockUser";
+import { openModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
+import {
   loginUserActionCreator,
   logoutUserActionCreator,
 } from "../../redux/features/usersSlice/usersSlice";
@@ -19,6 +24,11 @@ jest.mock("jwt-decode", () => {
   return () =>
     ({ id: "23456asdsadsad", username: "user123" } as JwtPayloadCustom);
 });
+
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => jest.fn(),
+}));
 
 Object.defineProperty(window, "localStorage", {
   value: mockLocalStorage,
@@ -73,6 +83,44 @@ describe("Given the useUser custom hook", () => {
       );
 
       expect(mockLocalStorage.getItem("token")).toBe(expectedUser.token);
+    });
+  });
+
+  describe("When a method registerUser is called", () => {
+    test("Then it should call dispatch openModelActionCreator with the text 'Bienvenid@! Ahora estas registrad@.'", async () => {
+      const {
+        result: {
+          current: { registerUser },
+        },
+      } = renderHook(() => useUser(), {
+        wrapper: MakeWrapper,
+      });
+
+      const newUser = mockUserRegister;
+      const modal = "Bienvenid@! Ahora estas registrad@.";
+
+      await registerUser(newUser);
+
+      expect(dispatchSpy).toHaveBeenCalledWith(openModalActionCreator(modal));
+    });
+
+    describe("And it receives an already registered user", () => {
+      test("Then it should call dispatch openModalActionCreator with the text 'Usuario ya registrado'", async () => {
+        const {
+          result: {
+            current: { registerUser },
+          },
+        } = renderHook(() => useUser(), {
+          wrapper: MakeWrapper,
+        });
+
+        const newUser = mockRegisteredUser;
+        const modal = "Usuario ya registrado";
+
+        await registerUser(newUser);
+
+        expect(dispatchSpy).toHaveBeenCalledWith(openModalActionCreator(modal));
+      });
     });
   });
 });
