@@ -25,3 +25,11 @@ export interface LoginResponse {
 export interface UiState {
   modal: string;
 }
+
+export interface UserRegisterCredentials extends UserCredentials {
+  email: string;
+}
+
+export interface AxiosErrorResponseBody {
+  error: string;
+}

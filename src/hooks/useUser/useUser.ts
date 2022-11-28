@@ -1,13 +1,17 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
+import { useNavigate } from "react-router-dom";
+import { openModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
 import {
   loginUserActionCreator,
   logoutUserActionCreator,
 } from "../../redux/features/usersSlice/usersSlice";
 import { useAppDispatch } from "../../redux/hooks";
 import {
+  AxiosErrorResponseBody,
   JwtPayloadCustom,
   LoginResponse,
   UserCredentials,
+  UserRegisterCredentials,
 } from "../../types/types";
 import decodeToken from "../../utils/decodetoken";
 import useToken from "../useToken/useToken";
@@ -16,6 +20,7 @@ const useUser = () => {
   const dispatch = useAppDispatch();
   const { removeToken } = useToken();
   const url = process.env.REACT_APP_API_URL!;
+  const navigate = useNavigate();
 
   const loginUser = async (userData: UserCredentials) => {
     try {
@@ -43,7 +48,23 @@ const useUser = () => {
     }
   };
 
-  return { loginUser, logoutUser };
+  const registerUser = async (registerData: UserRegisterCredentials) => {
+    try {
+      await axios.post(`${url}users/register`, registerData);
+
+      dispatch(openModalActionCreator("Bienvenid@! Ahora estas registrad@."));
+      navigate("/");
+    } catch (error: unknown) {
+      dispatch(
+        openModalActionCreator(
+          `${(error as AxiosError<AxiosErrorResponseBody>).response?.data
+            .error!}`
+        )
+      );
+    }
+  };
+
+  return { loginUser, logoutUser, registerUser };
 };
 
 export default useUser;
