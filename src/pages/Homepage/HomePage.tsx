@@ -1,4 +1,4 @@
-import LoginForm from "../components/LoginForm/LoginForm";
+import LoginForm from "../../components/LoginForm/LoginForm";
 import HomePageStyled from "./HomePageStyled";
 
 const HomePage = (): JSX.Element => {
