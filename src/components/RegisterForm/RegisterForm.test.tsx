@@ -3,6 +3,7 @@ import renderWithProviders from "../../mocks/renderWithProviders";
 import userEvent from "@testing-library/user-event";
 import { mockUserRegister } from "../../mocks/user/mockUser";
 import RegisterForm from "./RegisterForm";
+import { BrowserRouter } from "react-router-dom";
 
 const mockRegister = jest.fn();
 
@@ -19,7 +20,11 @@ describe("Given a RegisterForm component", () => {
       const emailLabel = "Email";
       const passwordLabel = "Contraseña";
 
-      renderWithProviders(<RegisterForm />);
+      renderWithProviders(
+        <BrowserRouter>
+          <RegisterForm />
+        </BrowserRouter>
+      );
 
       const userInput = screen.queryByRole("textbox", { name: userLabel });
 
@@ -41,7 +46,11 @@ describe("Given a RegisterForm component", () => {
     test("Then the form should be sumbitted with a mocked user", async () => {
       const { username, email, password } = mockUserRegister;
 
-      renderWithProviders(<RegisterForm />);
+      renderWithProviders(
+        <BrowserRouter>
+          <RegisterForm />
+        </BrowserRouter>
+      );
 
       const userInput = screen.queryByLabelText("Usuario")!;
       await userEvent.type(userInput, username);
