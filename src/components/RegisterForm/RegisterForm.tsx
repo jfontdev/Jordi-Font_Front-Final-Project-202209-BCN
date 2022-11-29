@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import useUser from "../../hooks/useUser/useUser";
 import { UserRegisterCredentials } from "../../types/types";
 import Button from "../Button/Button";
@@ -71,6 +72,10 @@ const RegisterForm = (): JSX.Element => {
         autoComplete="off"
       />
       <Button className="btn--dark" type="submit" text="Registrate" />
+      <span className="span-question">Ya estas registrado?</span>
+      <Link to={"/"}>
+        <span className="span-link">Haz login</span>
+      </Link>
     </RegisterFormStyled>
   );
 };
