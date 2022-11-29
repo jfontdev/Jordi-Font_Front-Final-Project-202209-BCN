@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import mainTheme from "../styles/mainTheme";
+import mainTheme from "../../styles/mainTheme";
 
 const HomePageStyled = styled.main`
   display: flex;

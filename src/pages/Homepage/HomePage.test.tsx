@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
-import renderWithProviders from "../mocks/renderWithProviders";
+import renderWithProviders from "../../mocks/renderWithProviders";
 import HomePage from "./HomePage";
 
 describe("Given a Homepage page", () => {
