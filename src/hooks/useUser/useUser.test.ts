@@ -97,7 +97,10 @@ describe("Given the useUser custom hook", () => {
       });
 
       const newUser = mockUserRegister;
-      const modal = "Bienvenid@! Ahora estas registrad@.";
+      const modal = {
+        message: "Bienvenid@! Ahora estas registrad@.",
+        isError: false,
+      };
 
       await registerUser(newUser);
 
@@ -115,7 +118,10 @@ describe("Given the useUser custom hook", () => {
         });
 
         const newUser = mockRegisteredUser;
-        const modal = "Usuario ya registrado";
+        const modal = {
+          message: "Usuario ya registrado",
+          isError: true,
+        };
 
         await registerUser(newUser);
 

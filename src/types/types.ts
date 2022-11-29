@@ -22,10 +22,6 @@ export interface LoginResponse {
   token: string;
 }
 
-export interface UiState {
-  modal: string;
-}
-
 export interface UserRegisterCredentials extends UserCredentials {
   email: string;
 }

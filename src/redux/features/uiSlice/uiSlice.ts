@@ -1,19 +1,30 @@
-import { UiState } from "../../../types/types";
+import { OpenModalPayload, UiState } from "./types";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 const UiInitialState: UiState = {
-  modal: "",
+  message: "",
+  isError: false,
+  isOpen: false,
 };
 
 const uiSlice = createSlice({
   name: "ui",
   initialState: UiInitialState,
   reducers: {
-    openModal: (previousUi, action: PayloadAction<string>) => ({
+    openModal: (
+      previousUi,
+      action: PayloadAction<OpenModalPayload>
+    ): UiState => ({
       ...previousUi,
-      modal: action.payload,
+      message: action.payload.message,
+      isError: action.payload.isError,
+      isOpen: true,
     }),
-    closeModal: (previousUi) => ({ ...previousUi, modal: "" }),
+    closeModal: (previousUi): UiState => ({
+      ...previousUi,
+      message: "",
+      isOpen: false,
+    }),
   },
 });
 

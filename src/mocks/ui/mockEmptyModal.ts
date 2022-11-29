@@ -1,3 +1,5 @@
 export const mockEmptyModal = {
-  modal: "",
+  message: "",
+  isError: false,
+  isOpen: true,
 };

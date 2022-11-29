@@ -33,7 +33,7 @@ const mainTheme: DefaultTheme = {
     },
     modalError: {
       accent: "#c30052",
-      background: "#ed2e7e",
+      background: "#fff3f8",
     },
   },
   sizes: {
