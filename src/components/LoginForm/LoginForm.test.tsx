@@ -1,5 +1,6 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { BrowserRouter } from "react-router-dom";
 import renderWithProviders from "../../mocks/renderWithProviders";
 import { mockUserLogin } from "../../mocks/user/mockUser";
 import LoginForm from "./LoginForm";
@@ -18,7 +19,11 @@ describe("Given a LoginForm component", () => {
       const userLabel = "Usuario";
       const passwordLabel = "Contraseña";
 
-      renderWithProviders(<LoginForm />);
+      renderWithProviders(
+        <BrowserRouter>
+          <LoginForm />
+        </BrowserRouter>
+      );
 
       const userInput = screen.queryByRole("textbox", { name: userLabel });
 
@@ -36,7 +41,11 @@ describe("Given a LoginForm component", () => {
     test("Then the form should be sumbitted", async () => {
       const { username, password } = mockUserLogin;
 
-      renderWithProviders(<LoginForm />);
+      renderWithProviders(
+        <BrowserRouter>
+          <LoginForm />
+        </BrowserRouter>
+      );
 
       const userInput = screen.queryByLabelText("Usuario")!;
       await userEvent.type(userInput, username);
