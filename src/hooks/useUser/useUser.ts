@@ -52,14 +52,20 @@ const useUser = () => {
     try {
       await axios.post(`${url}users/register`, registerData);
 
-      dispatch(openModalActionCreator("Bienvenid@! Ahora estas registrad@."));
+      dispatch(
+        openModalActionCreator({
+          message: "Bienvenid@! Ahora estas registrad@.",
+          isError: false,
+        })
+      );
       navigate("/");
     } catch (error: unknown) {
       dispatch(
-        openModalActionCreator(
-          `${(error as AxiosError<AxiosErrorResponseBody>).response?.data
-            .error!}`
-        )
+        openModalActionCreator({
+          message: `${(error as AxiosError<AxiosErrorResponseBody>).response
+            ?.data.error!}`,
+          isError: true,
+        })
       );
     }
   };
