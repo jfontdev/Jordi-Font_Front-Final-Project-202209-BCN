@@ -3,7 +3,7 @@ import mainTheme from "../../styles/mainTheme";
 
 const LabelStyled = styled.label`
   display: block;
-  margin-bottom: ${mainTheme.pxToRem(6)};
+  margin-bottom: ${mainTheme.pxToRem(4)};
   &.radio {
     display: inline-block;
     margin-bottom: 0;
