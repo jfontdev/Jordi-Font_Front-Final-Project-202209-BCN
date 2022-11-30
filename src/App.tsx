@@ -1,5 +1,6 @@
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/Layout/Layout";
+import FilmDetail from "./pages/FilmDetail/FilmDetail";
 import HomePage from "./pages/Homepage/HomePage";
 import Register from "./pages/Register/Register";
 
@@ -9,6 +10,7 @@ const App = () => {
       <Route element={<Layout />}>
         <Route path="/" element={<HomePage />}></Route>
         <Route path="/register" element={<Register />}></Route>
+        <Route path="/film-detail" element={<FilmDetail />}></Route>
       </Route>
     </Routes>
   );
