@@ -15,11 +15,18 @@ const MovieDetailStyled = styled.article`
     margin-bottom: 10px;
   }
 
+  .movie-poster-container {
+    overflow: hidden;
+  }
+
   .movie-poster {
     margin-top: ${mainTheme.pxToRem(60)};
+    margin-right: ${mainTheme.pxToRem(10)};
+    margin-left: ${mainTheme.pxToRem(15)};
     border-radius: ${mainTheme.sizes.button.borderRadius};
     object-fit: cover;
-    object-position: 50% 0;
+    width: 90%;
+    height: 100%;
     filter: drop-shadow(5px 5px 5px #666666);
   }
 
