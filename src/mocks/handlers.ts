@@ -1,5 +1,6 @@
 import { rest } from "msw";
 import { UserCredentials, UserRegisterCredentials } from "../types/types";
+import { mockReviewList } from "./review/mockReviewList";
 
 const url = process.env.REACT_APP_API_URL;
 
@@ -21,5 +22,16 @@ export const handlers = [
     }
 
     return res(ctx.status(201), ctx.json({ user }));
+  }),
+
+  rest.get(`${url}reviews`, async (req, res, ctx) => {
+    return res.once(ctx.status(200), ctx.json(mockReviewList));
+  }),
+
+  rest.get(`${url}reviews`, async (req, res, ctx) => {
+    return res.once(
+      ctx.status(404),
+      ctx.json({ error: "Esta película aún no tiene reseñas." })
+    );
   }),
 ];

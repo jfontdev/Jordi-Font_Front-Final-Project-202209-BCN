@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/react";
 import renderWithProviders from "../../mocks/renderWithProviders";
-import mockEmptyReview from "../../mocks/review/mockReview";
+import { mockEmptyReview } from "../../mocks/review/mockReview";
 import { mockErrorModal } from "../../mocks/ui/mockErrorModal";
 import { mockSuccessModal } from "../../mocks/ui/mockSuccessModal";
 import { mockUserInitialState } from "../../mocks/user/mockUser";
