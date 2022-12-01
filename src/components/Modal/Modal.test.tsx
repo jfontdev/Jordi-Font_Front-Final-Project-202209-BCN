@@ -1,5 +1,6 @@
 import { screen } from "@testing-library/react";
 import renderWithProviders from "../../mocks/renderWithProviders";
+import mockEmptyReview from "../../mocks/review/mockReview";
 import { mockErrorModal } from "../../mocks/ui/mockErrorModal";
 import { mockSuccessModal } from "../../mocks/ui/mockSuccessModal";
 import { mockUserInitialState } from "../../mocks/user/mockUser";
@@ -26,6 +27,7 @@ describe("Given a Modal component", () => {
         preloadedState: {
           ui: mockSuccessModal,
           user: mockUserInitialState,
+          review: mockEmptyReview,
         },
       });
 
@@ -45,6 +47,7 @@ describe("Given a Modal component", () => {
         preloadedState: {
           ui: mockErrorModal,
           user: mockUserInitialState,
+          review: mockEmptyReview,
         },
       });
 

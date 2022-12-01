@@ -3,6 +3,7 @@ import { render, RenderOptions } from "@testing-library/react";
 import React, { PropsWithChildren } from "react";
 import { Provider } from "react-redux";
 import { DefaultTheme, ThemeProvider } from "styled-components";
+import { reviewsReducer } from "../redux/features/reviewsSlice/reviewsSlice";
 import { uiReducer } from "../redux/features/uiSlice/uiSlice";
 import { userReducer } from "../redux/features/usersSlice/usersSlice";
 import { RootState, store } from "../redux/store";
@@ -20,7 +21,7 @@ const renderWithProviders = (
   {
     preloadedState,
     store = configureStore({
-      reducer: { ui: uiReducer, user: userReducer },
+      reducer: { ui: uiReducer, user: userReducer, review: reviewsReducer },
       preloadedState,
     }),
     ...renderOptions
