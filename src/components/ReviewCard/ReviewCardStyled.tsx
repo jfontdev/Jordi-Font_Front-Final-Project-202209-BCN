@@ -7,8 +7,9 @@ const ReviewCardStyled = styled.article`
   flex-direction: column;
   justify-content: center;
   width: 90%;
-  margin-left: ${mainTheme.pxToRem(25)};
-  margin-right: ${mainTheme.pxToRem(25)};
+  margin-top: ${mainTheme.pxToRem(33)};
+  margin-left: ${mainTheme.pxToRem(20)};
+  margin-right: ${mainTheme.pxToRem(20)};
   .review-container {
     margin-left: ${mainTheme.pxToRem(10)};
   }
@@ -24,6 +25,9 @@ const ReviewCardStyled = styled.article`
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+  .review-rating {
+    margin-bottom: ${mainTheme.pxToRem(16)};
   }
 `;
 
