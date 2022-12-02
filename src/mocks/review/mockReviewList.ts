@@ -1,5 +1,5 @@
 export const mockReviewList = {
-  reviewsList: [
+  reviewList: [
     {
       _id: "6385fda659fac43576020b2c",
       title: "abc",

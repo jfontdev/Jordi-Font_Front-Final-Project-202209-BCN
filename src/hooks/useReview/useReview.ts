@@ -14,9 +14,9 @@ const useReview = () => {
 
       const responseData = response.data;
 
-      const { reviewsList } = responseData;
+      const { reviewList } = responseData;
 
-      dispatch(loadReviewsActionCreator(reviewsList));
+      dispatch(loadReviewsActionCreator(reviewList));
     } catch (error: unknown) {
       dispatch(
         openModalActionCreator({
