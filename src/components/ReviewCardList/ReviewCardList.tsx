@@ -18,6 +18,7 @@ const ReviewCardList = (): JSX.Element => {
       {reviewList.map((review, index) => (
         <li key={index} className="reviews-list-container">
           <ReviewCard
+            id={review._id!}
             title={review.title}
             review={review.reviewText}
             rating={review.rating}

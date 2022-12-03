@@ -29,6 +29,18 @@ const ReviewCardStyled = styled.article`
   .review-rating {
     margin-bottom: ${mainTheme.pxToRem(16)};
   }
+  .button-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .button-delete {
+    width: 50%;
+    margin-top: ${mainTheme.pxToRem(16)};
+    margin-bottom: ${mainTheme.pxToRem(16)};
+    padding: 5px;
+    border: 2px solid ${mainTheme.colors.button.medium};
+  }
 `;
 
 export default ReviewCardStyled;

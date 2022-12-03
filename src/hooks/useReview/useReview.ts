@@ -32,7 +32,7 @@ const useReview = () => {
 
   const deleteReview = async (idReview: string) => {
     try {
-      await axios.delete(`${url}/reviews/delete/${idReview}`);
+      await axios.delete(`${url}reviews/delete/${idReview}`);
       dispatch(deleteReviewActionCreator(idReview));
       dispatch(
         openModalActionCreator({
