@@ -11,6 +11,7 @@ describe("Given a ReviewCard component", () => {
 
       renderWithProviders(
         <ReviewCard
+          id=""
           title={expectedReviewTitle}
           review="Siempre la recordaréis como la película que convirtió a Johnny Depp en una superestrella y casi le hace ganar un Oscar. El hecho de que no ganara no es un problema, ya que gracias a él esta es la mejor película de piratas jamás realizada."
           rating={10}

@@ -1,3 +1,5 @@
+import useReview from "../../hooks/useReview/useReview";
+import Button from "../Button/Button";
 import ReviewCardStyled from "./ReviewCardStyled";
 
 interface MovieCardProps {
@@ -5,14 +7,17 @@ interface MovieCardProps {
   review: string;
   rating: number;
   favoriteScene: string;
+  id: string;
 }
 
 const ReviewCard = ({
+  id,
   title,
   review,
   rating,
   favoriteScene,
 }: MovieCardProps): JSX.Element => {
+  const { deleteReview } = useReview();
   return (
     <ReviewCardStyled>
       <div className="review-container">
@@ -28,6 +33,16 @@ const ReviewCard = ({
             width={312}
           />
         </div>
+      </div>
+      <div className="button-container">
+        <Button
+          className="button-delete btn--medium"
+          type="submit"
+          text="Borrar"
+          action={() => {
+            deleteReview(id!);
+          }}
+        />
       </div>
     </ReviewCardStyled>
   );
