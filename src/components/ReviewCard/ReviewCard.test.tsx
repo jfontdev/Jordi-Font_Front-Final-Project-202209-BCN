@@ -1,6 +1,16 @@
 import { screen } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
 import renderWithProviders from "../../mocks/renderWithProviders";
+import { mockReviews } from "../../mocks/review/mockReview";
 import ReviewCard from "./ReviewCard";
+
+const mockDeleteReview = jest.fn();
+
+jest.mock("../../hooks/useReview/useReview", () => {
+  return () => ({
+    deleteReview: mockDeleteReview,
+  });
+});
 
 describe("Given a ReviewCard component", () => {
   describe("When it is rendered", () => {
@@ -27,6 +37,31 @@ describe("Given a ReviewCard component", () => {
 
       expect(reviewTitle).toBeInTheDocument();
       expect(reviewScene).toHaveAttribute("src", expectedReviewScene);
+    });
+  });
+
+  describe("And a button with a text 'Borrar' with an action to delete a review", () => {
+    test("Then the action should be dispatched when the user clicks the button", async () => {
+      const expectedReviewButton = "Borrar";
+
+      renderWithProviders(
+        <ReviewCard
+          id={mockReviews[0]._id}
+          title=""
+          review=""
+          rating={0}
+          favoriteScene=""
+        />
+      );
+
+      const reviewButton = screen.queryByRole("button", {
+        name: expectedReviewButton,
+      })!;
+
+      await userEvent.click(reviewButton);
+
+      expect(reviewButton).toBeInTheDocument();
+      expect(mockDeleteReview).toHaveBeenCalled();
     });
   });
 });
