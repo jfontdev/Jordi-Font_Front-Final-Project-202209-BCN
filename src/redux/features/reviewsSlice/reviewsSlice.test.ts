@@ -1,4 +1,10 @@
-import { loadReviewsActionCreator, reviewsReducer } from "./reviewsSlice";
+import { mockReviewToDelete } from "../../../mocks/review/mockReview";
+import { mockReviewList } from "../../../mocks/review/mockReviewList";
+import {
+  deleteReviewActionCreator,
+  loadReviewsActionCreator,
+  reviewsReducer,
+} from "./reviewsSlice";
 import { Reviews, ReviewsState } from "./types";
 
 describe("Given the reviewsReducer", () => {
@@ -13,19 +19,33 @@ describe("Given the reviewsReducer", () => {
         },
       ];
       const expectedReviewState: ReviewsState = {
-        reviewsList: expectedReviewList,
+        reviewList: expectedReviewList,
       };
 
       const initialState: ReviewsState = {
-        reviewsList: [],
+        reviewList: [],
       };
 
-      const newStateRobots = reviewsReducer(
+      const newStateReviews = reviewsReducer(
         initialState,
         loadReviewsActionCreator(expectedReviewList)
       );
 
-      expect(newStateRobots).toStrictEqual(expectedReviewState);
+      expect(newStateReviews).toStrictEqual(expectedReviewState);
+    });
+  });
+
+  describe("When it is invoked with the reducer deleteReview", () => {
+    test("Then it should delete a review with the id '6385fda659fac43576020f2d'", () => {
+      const mockId = "6385fda659fac43576020f2d";
+
+      const action = deleteReviewActionCreator(mockId);
+
+      const expectedState = mockReviewToDelete;
+
+      const newState = reviewsReducer(mockReviewList, action);
+
+      expect(newState).toStrictEqual(expectedState);
     });
   });
 });

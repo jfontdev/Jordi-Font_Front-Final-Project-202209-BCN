@@ -1,9 +1,9 @@
 export interface ReviewsState {
-  reviewsList: Reviews;
+  reviewList: Reviews;
 }
 
 export interface Review {
-  id?: string;
+  _id?: string;
   title: string;
   reviewText: string;
   rating: number;

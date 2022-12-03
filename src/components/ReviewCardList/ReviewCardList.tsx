@@ -5,7 +5,7 @@ import ReviewCard from "../ReviewCard/ReviewCard";
 import ReviewCardListStyled from "./ReviewCardListStyled";
 
 const ReviewCardList = (): JSX.Element => {
-  const reviewList = useAppSelector(({ review }) => review.reviewsList);
+  const reviewList = useAppSelector(({ review }) => review.reviewList);
   const { loadReviewsList } = useReview();
 
   useEffect(() => {
