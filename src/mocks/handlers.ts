@@ -37,10 +37,10 @@ export const handlers = [
     );
   }),
 
-  rest.delete(`${url}/reviews/delete/${_id}`, async (req, res, ctx) => {
+  rest.delete(`${url}reviews/delete/${_id}`, async (req, res, ctx) => {
     return res.once(ctx.status(200));
   }),
-  rest.delete(`${url}/reviews/delete/${_id}`, async (req, res, ctx) => {
+  rest.delete(`${url}reviews/delete/${_id}`, async (req, res, ctx) => {
     return res.once(
       ctx.status(500),
       ctx.json({ error: "No puedes borrar en estos momentos!" })
