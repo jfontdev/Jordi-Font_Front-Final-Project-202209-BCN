@@ -1,7 +1,10 @@
 import { renderHook, waitFor } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
 import { mockReviews } from "../../mocks/review/mockReview";
-import { loadReviewsActionCreator } from "../../redux/features/reviewsSlice/reviewsSlice";
+import {
+  deleteReviewActionCreator,
+  loadReviewsActionCreator,
+} from "../../redux/features/reviewsSlice/reviewsSlice";
 import { openModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
 import { store } from "../../redux/store";
 import MakeWrapper from "../../testUtils/MakeWrapper";
@@ -53,6 +56,51 @@ describe("Given a useReview custom hook", () => {
         expect(dispatchSpy).toHaveBeenCalledWith(
           openModalActionCreator(expectedError)
         )
+      );
+    });
+  });
+
+  describe("When its method deleteReview is invoked", () => {
+    test("Then it should call the dispatch with the action and delete one review", async () => {
+      const {
+        result: {
+          current: { deleteReview },
+        },
+      } = renderHook(() => useReview(), {
+        wrapper: MakeWrapper,
+      });
+
+      const { _id } = mockReviews[0];
+
+      await act(async () => await deleteReview(_id));
+
+      await waitFor(() =>
+        expect(dispatchSpy).toHaveBeenCalledWith(deleteReviewActionCreator(_id))
+      );
+    });
+  });
+
+  describe("When its method deleteReview is invoked and it fails", () => {
+    test("Then it should call the dispatch with openModal and the error 'No puedes borrar en estos momentos!'", async () => {
+      const {
+        result: {
+          current: { deleteReview },
+        },
+      } = renderHook(() => useReview(), {
+        wrapper: MakeWrapper,
+      });
+
+      const { _id } = mockReviews[0];
+
+      await deleteReview(_id);
+
+      const expectedError = {
+        isError: true,
+        message: "No puedes borrar en estos momentos!",
+      };
+
+      expect(dispatchSpy).toHaveBeenCalledWith(
+        openModalActionCreator(expectedError)
       );
     });
   });
