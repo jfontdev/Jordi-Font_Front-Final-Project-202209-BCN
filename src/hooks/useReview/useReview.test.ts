@@ -1,6 +1,6 @@
 import { renderHook, waitFor } from "@testing-library/react";
 import { act } from "react-dom/test-utils";
-import { mockReviews } from "../../mocks/review/mockReview";
+import { mockCreateReview, mockReviews } from "../../mocks/review/mockReview";
 import {
   deleteReviewActionCreator,
   loadReviewsActionCreator,
@@ -13,6 +13,11 @@ import useReview from "./useReview";
 beforeEach(() => {
   jest.clearAllMocks();
 });
+
+jest.mock("react-router-dom", () => ({
+  ...jest.requireActual("react-router-dom"),
+  useNavigate: () => jest.fn(),
+}));
 
 const dispatchSpy = jest.spyOn(store, "dispatch");
 
@@ -102,6 +107,56 @@ describe("Given a useReview custom hook", () => {
       expect(dispatchSpy).toHaveBeenCalledWith(
         openModalActionCreator(expectedError)
       );
+    });
+  });
+
+  describe("When its method createReview is called with a successful review creation", () => {
+    test("Then it should call the dispatch with openModal with the text 'Reseña creada'", async () => {
+      const {
+        result: {
+          current: { createReview },
+        },
+      } = renderHook(() => useReview(), {
+        wrapper: MakeWrapper,
+      });
+      const newReview = mockCreateReview;
+      const expectedMessage = {
+        isError: false,
+        message: "Reseña creada",
+      };
+
+      await act(async () => await createReview(newReview));
+
+      await waitFor(() => {
+        expect(dispatchSpy).toHaveBeenCalledWith(
+          openModalActionCreator(expectedMessage)
+        );
+      });
+    });
+  });
+
+  describe("When its method createReview is called and it fails", () => {
+    test("Then it should call the dispatch with openModal with the text 'No puedes crear reseñas ahora mismo.'", async () => {
+      const {
+        result: {
+          current: { createReview },
+        },
+      } = renderHook(() => useReview(), {
+        wrapper: MakeWrapper,
+      });
+      const newReview = mockCreateReview;
+      const expectedMessage = {
+        isError: true,
+        message: "No puedes crear reseñas ahora mismo.",
+      };
+
+      await act(async () => await createReview(newReview));
+
+      await waitFor(() => {
+        expect(dispatchSpy).toHaveBeenCalledWith(
+          openModalActionCreator(expectedMessage)
+        );
+      });
     });
   });
 });
