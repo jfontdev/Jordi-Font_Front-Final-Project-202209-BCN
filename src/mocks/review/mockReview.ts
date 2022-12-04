@@ -46,3 +46,10 @@ export const mockReviewToDelete = {
     },
   ],
 };
+
+export const mockCreateReview = {
+  title: "abc",
+  reviewText: "abc",
+  rating: 10,
+  favoriteScene: "abc.jpg",
+};
