@@ -24,7 +24,21 @@ const ReviewCardListStyled = styled.ul`
     margin-top: ${mainTheme.pxToRem(5)};
     margin-left: ${mainTheme.pxToRem(20)};
     margin-right: ${mainTheme.pxToRem(30)};
+    margin-bottom: ${mainTheme.pxToRem(16)};
+  }
+  .span-link {
+    margin-top: ${mainTheme.pxToRem(10)};
+    margin-left: ${mainTheme.pxToRem(20)};
+    margin-right: ${mainTheme.pxToRem(30)};
     margin-bottom: ${mainTheme.pxToRem(10)};
+    text-decoration: none;
+    color: #464d5d;
+    font-weight: 600;
+    font-size: 18px;
+  }
+  .add-icon {
+    margin-right: ${mainTheme.pxToRem(4)};
+    font-size: ${mainTheme.pxToRem(16)};
   }
 `;
 
