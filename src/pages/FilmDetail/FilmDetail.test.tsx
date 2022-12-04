@@ -1,4 +1,5 @@
 import { screen } from "@testing-library/react";
+import { BrowserRouter } from "react-router-dom";
 import renderWithProviders from "../../mocks/renderWithProviders";
 import FilmDetail from "./FilmDetail";
 
@@ -13,7 +14,11 @@ describe("Given a FilmDetail component", () => {
       const expectedMovieTitle = "Piratas del Caribe";
       const expectedMoviePoster = "Pirates of the caribbean movie poster";
 
-      renderWithProviders(<FilmDetail />);
+      renderWithProviders(
+        <BrowserRouter>
+          <FilmDetail />
+        </BrowserRouter>
+      );
 
       const movieTitle = screen.getByRole("heading", {
         level: 1,

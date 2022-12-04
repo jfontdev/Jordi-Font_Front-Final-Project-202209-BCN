@@ -25,6 +25,7 @@ const ReviewCard = ({
         <p className="review-text">{review}</p>
         <span className="review-rating">Calificación: {rating}/10</span>
         <div className="review-scene-container">
+          <span className="review-scene-container-title">Escena favorita:</span>
           <img
             className="review-scene"
             src={favoriteScene}
