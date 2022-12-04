@@ -1,6 +1,7 @@
 import { renderHook } from "@testing-library/react";
 import mockLocalStorage from "../../mocks/localStorage/mockLocalStorage";
 import {
+  mockInvalidUserLogin,
   mockRegisteredUser,
   mockUserRegister,
 } from "../../mocks/user/mockUser";
@@ -83,6 +84,28 @@ describe("Given the useUser custom hook", () => {
       );
 
       expect(mockLocalStorage.getItem("token")).toBe(expectedUser.token);
+    });
+  });
+
+  describe("When its method loginUser is called with an invalid username", () => {
+    test("The it should call the dispatch openModelActionCreator with the text 'Introduzca un usuario valido.'", async () => {
+      const {
+        result: {
+          current: { loginUser },
+        },
+      } = renderHook(() => useUser(), {
+        wrapper: MakeWrapper,
+      });
+
+      const invalidUser = mockInvalidUserLogin;
+      const modal = {
+        message: "Introduzca un usuario valido.",
+        isError: true,
+      };
+
+      await loginUser(invalidUser);
+
+      expect(dispatchSpy).toHaveBeenCalledWith(openModalActionCreator(modal));
     });
   });
 
