@@ -53,3 +53,10 @@ export const mockCreateReview = {
   rating: 10,
   favoriteScene: "abc.jpg",
 };
+
+export const mockAddReview = {
+  title: "abc",
+  reviewText: "abc",
+  rating: "10",
+  favoriteScene: "abc.jpg",
+};
