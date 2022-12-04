@@ -34,6 +34,7 @@ const useUser = () => {
 
       dispatch(loginUserActionCreator({ ...loggedUser, token }));
       localStorage.setItem("token", token);
+      navigate("/film-detail");
     } catch (error: unknown) {
       dispatch(
         openModalActionCreator({
@@ -54,14 +55,13 @@ const useUser = () => {
   const registerUser = async (registerData: UserRegisterCredentials) => {
     try {
       await axios.post(`${url}users/register`, registerData);
-
+      navigate("/");
       dispatch(
         openModalActionCreator({
           message: "Bienvenid@! Ahora estas registrad@.",
           isError: false,
         })
       );
-      navigate("/");
     } catch (error: unknown) {
       dispatch(
         openModalActionCreator({
