@@ -35,17 +35,20 @@ const useUser = () => {
       dispatch(loginUserActionCreator({ ...loggedUser, token }));
       localStorage.setItem("token", token);
     } catch (error: unknown) {
-      throw new Error(`Login fails : ${(error as Error).message}`);
+      dispatch(
+        openModalActionCreator({
+          isError: true,
+          message: `${(error as AxiosError<AxiosErrorResponseBody>).response
+            ?.data.error!}`,
+        })
+      );
     }
   };
 
   const logoutUser = () => {
-    try {
-      removeToken();
-      dispatch(logoutUserActionCreator());
-    } catch (error: unknown) {
-      throw new Error(`Logout fails: ${(error as Error).message}`);
-    }
+    removeToken();
+
+    dispatch(logoutUserActionCreator());
   };
 
   const registerUser = async (registerData: UserRegisterCredentials) => {
