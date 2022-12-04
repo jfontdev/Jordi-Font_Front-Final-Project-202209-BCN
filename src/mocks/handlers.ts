@@ -1,4 +1,5 @@
 import { rest } from "msw";
+import { Review } from "../redux/features/reviewsSlice/types";
 import { UserCredentials, UserRegisterCredentials } from "../types/types";
 import { mockReviews } from "./review/mockReview";
 import { mockReviewList } from "./review/mockReviewList";
@@ -9,8 +10,12 @@ const { _id } = mockReviews[0];
 export const handlers = [
   rest.post(`${url}users/login`, async (req, res, ctx) => {
     const user = await req.json<UserCredentials>();
-    if (!user) {
-      return res(ctx.status(401));
+    const { username } = user;
+    if (username === "invalidUser") {
+      return res(
+        ctx.status(401),
+        ctx.json({ error: "Introduzca un usuario valido." })
+      );
     }
 
     return res(ctx.status(200), ctx.json({ token: "token" }));
@@ -44,6 +49,18 @@ export const handlers = [
     return res.once(
       ctx.status(500),
       ctx.json({ error: "No puedes borrar en estos momentos!" })
+    );
+  }),
+
+  rest.post(`${url}reviews/create`, async (req, res, ctx) => {
+    const review = await req.json<Review>();
+    return res.once(ctx.status(201), ctx.json({ review }));
+  }),
+
+  rest.post(`${url}reviews/create`, async (req, res, ctx) => {
+    return res.once(
+      ctx.status(500),
+      ctx.json({ error: "No puedes crear reseñas ahora mismo." })
     );
   }),
 ];
