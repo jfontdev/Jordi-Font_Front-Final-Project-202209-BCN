@@ -22,6 +22,7 @@ const ReviewCardStyled = styled.article`
     overflow: hidden;
   }
   .review-scene {
+    margin-top: ${mainTheme.pxToRem(10)};
     width: 100%;
     height: 100%;
     object-fit: cover;
