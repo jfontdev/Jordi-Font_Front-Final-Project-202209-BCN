@@ -1,9 +1,9 @@
 import { Route, Routes } from "react-router-dom";
-import Layout from "./components/Layout/Layout";
-import CreateReview from "./pages/CreateReview/CreateReview";
-import FilmDetail from "./pages/FilmDetail/FilmDetail";
-import HomePage from "./pages/Homepage/HomePage";
-import Register from "./pages/Register/Register";
+import Layout from "../Layout/Layout";
+import CreateReview from "../../pages/CreateReview/CreateReview";
+import FilmDetail from "../../pages/FilmDetail/FilmDetail";
+import HomePage from "../../pages/Homepage/HomePage";
+import Register from "../../pages/Register/Register";
 
 const App = () => {
   return (
