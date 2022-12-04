@@ -9,6 +9,11 @@ export const mockUserLogin: UserCredentials = {
   password: "123456",
 };
 
+export const mockInvalidUserLogin: UserCredentials = {
+  username: "invalidUser",
+  password: "123456",
+};
+
 export const mockUserRegister: UserRegisterCredentials = {
   username: "user1",
   password: "123456",
