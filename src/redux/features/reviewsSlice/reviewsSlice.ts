@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { Reviews, ReviewsState } from "./types";
+import { Review, Reviews, ReviewsState } from "./types";
 
-const initialState: ReviewsState = {
+export const initialState: ReviewsState = {
   reviewList: [],
 };
 
@@ -27,12 +27,17 @@ const reviewSlice = createSlice({
         ),
       ],
     }),
+    createReview: (currentState, action: PayloadAction<Review>) => ({
+      ...currentState,
+      reviewList: [...currentState.reviewList, action.payload],
+    }),
   },
 });
 
 export const {
   loadReviews: loadReviewsActionCreator,
   deleteReview: deleteReviewActionCreator,
+  createReview: createReviewActionCreator,
 } = reviewSlice.actions;
 
 export const reviewsReducer = reviewSlice.reducer;
