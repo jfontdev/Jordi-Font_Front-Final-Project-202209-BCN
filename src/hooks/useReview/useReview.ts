@@ -7,7 +7,11 @@ import {
   loadReviewsActionCreator,
 } from "../../redux/features/reviewsSlice/reviewsSlice";
 import { Review } from "../../redux/features/reviewsSlice/types";
-import { openModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
+import {
+  closeLoadingActionCreator,
+  openModalActionCreator,
+  triggerLoadingActionCreator,
+} from "../../redux/features/uiSlice/uiSlice";
 import { useAppDispatch } from "../../redux/hooks";
 
 const useReview = () => {
@@ -16,6 +20,7 @@ const useReview = () => {
   const navigate = useNavigate();
 
   const loadReviewsList = useCallback(async () => {
+    dispatch(triggerLoadingActionCreator());
     try {
       const response = await axios.get(`${url}reviews`);
 
@@ -23,8 +28,11 @@ const useReview = () => {
 
       const { reviewList } = responseData;
 
+      dispatch(closeLoadingActionCreator());
+
       dispatch(loadReviewsActionCreator(reviewList));
     } catch (error: unknown) {
+      dispatch(closeLoadingActionCreator());
       dispatch(
         openModalActionCreator({
           isError: true,
@@ -35,8 +43,10 @@ const useReview = () => {
   }, [dispatch, url]);
 
   const deleteReview = async (idReview: string) => {
+    dispatch(triggerLoadingActionCreator());
     try {
       await axios.delete(`${url}reviews/delete/${idReview}`);
+      dispatch(closeLoadingActionCreator());
       dispatch(deleteReviewActionCreator(idReview));
       dispatch(
         openModalActionCreator({
@@ -45,6 +55,7 @@ const useReview = () => {
         })
       );
     } catch (error: unknown) {
+      dispatch(closeLoadingActionCreator());
       dispatch(
         openModalActionCreator({
           isError: true,
@@ -55,8 +66,10 @@ const useReview = () => {
   };
 
   const createReview = async (reviewData: Review) => {
+    dispatch(triggerLoadingActionCreator());
     try {
       await axios.post(`${url}reviews/create`, reviewData);
+      dispatch(closeLoadingActionCreator());
       dispatch(
         openModalActionCreator({
           isError: false,
@@ -65,6 +78,7 @@ const useReview = () => {
       );
       navigate("/film-detail");
     } catch (error: unknown) {
+      dispatch(closeLoadingActionCreator());
       dispatch(
         openModalActionCreator({
           isError: true,
