@@ -3,6 +3,7 @@ import { Review, Reviews, ReviewsState } from "./types";
 
 export const initialState: ReviewsState = {
   reviewList: [],
+  review: {},
 };
 
 const reviewSlice = createSlice({
@@ -31,6 +32,10 @@ const reviewSlice = createSlice({
       ...currentState,
       reviewList: [...currentState.reviewList, action.payload],
     }),
+    getReviewById: (currentState, action: PayloadAction<Review>) => ({
+      ...currentState,
+      review: { ...action.payload } as Review,
+    }),
   },
 });
 
@@ -38,6 +43,7 @@ export const {
   loadReviews: loadReviewsActionCreator,
   deleteReview: deleteReviewActionCreator,
   createReview: createReviewActionCreator,
+  getReviewById: getReviewByIdActionCreator,
 } = reviewSlice.actions;
 
 export const reviewsReducer = reviewSlice.reducer;
