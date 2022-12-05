@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 import {
   deleteReviewActionCreator,
+  getReviewByIdActionCreator,
   loadReviewsActionCreator,
 } from "../../redux/features/reviewsSlice/reviewsSlice";
 import { Review } from "../../redux/features/reviewsSlice/types";
@@ -88,7 +89,29 @@ const useReview = () => {
     }
   };
 
-  return { loadReviewsList, deleteReview, createReview };
+  const getReviewById = async (idReview: string) => {
+    dispatch(triggerLoadingActionCreator());
+    try {
+      const response = await axios.get(`${url}reviews/detail/${idReview}`);
+
+      const responseData = response.data;
+
+      const { review } = responseData;
+
+      dispatch(closeLoadingActionCreator);
+      dispatch(getReviewByIdActionCreator(review));
+    } catch (error: unknown) {
+      dispatch(closeLoadingActionCreator());
+      dispatch(
+        openModalActionCreator({
+          isError: true,
+          message: "No podemos mostrar la reseña en estos momentos.",
+        })
+      );
+    }
+  };
+
+  return { loadReviewsList, deleteReview, createReview, getReviewById };
 };
 
 export default useReview;
