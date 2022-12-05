@@ -3,6 +3,7 @@ import { act } from "react-dom/test-utils";
 import { mockCreateReview, mockReviews } from "../../mocks/review/mockReview";
 import {
   deleteReviewActionCreator,
+  getReviewByIdActionCreator,
   loadReviewsActionCreator,
 } from "../../redux/features/reviewsSlice/reviewsSlice";
 import { openModalActionCreator } from "../../redux/features/uiSlice/uiSlice";
@@ -151,6 +152,54 @@ describe("Given a useReview custom hook", () => {
       };
 
       await act(async () => await createReview(newReview));
+
+      await waitFor(() => {
+        expect(dispatchSpy).toHaveBeenCalledWith(
+          openModalActionCreator(expectedMessage)
+        );
+      });
+    });
+  });
+
+  describe("When its method createReview is called with success", () => {
+    test("Then it should call the dispatch with the action and get one review", async () => {
+      const {
+        result: {
+          current: { getReviewById },
+        },
+      } = renderHook(() => useReview(), {
+        wrapper: MakeWrapper,
+      });
+
+      const idReview = mockReviews[0]._id;
+      const review = mockReviews[0];
+
+      await act(async () => await getReviewById(idReview));
+
+      await waitFor(() =>
+        expect(dispatchSpy).toHaveBeenCalledWith(
+          getReviewByIdActionCreator(review)
+        )
+      );
+    });
+  });
+
+  describe("When its method getReviewByID is called and it fails", () => {
+    test("Then it should call the dispatch with openModal with the text 'No podemos mostrar la reseña en estos momentos.'", async () => {
+      const {
+        result: {
+          current: { getReviewById },
+        },
+      } = renderHook(() => useReview(), {
+        wrapper: MakeWrapper,
+      });
+      const idReview = mockReviews[0]._id;
+      const expectedMessage = {
+        isError: true,
+        message: "No podemos mostrar la reseña en estos momentos.",
+      };
+
+      await act(async () => await getReviewById(idReview));
 
       await waitFor(() => {
         expect(dispatchSpy).toHaveBeenCalledWith(

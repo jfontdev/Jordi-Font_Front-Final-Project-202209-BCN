@@ -63,4 +63,18 @@ export const handlers = [
       ctx.json({ error: "No puedes crear reseñas ahora mismo." })
     );
   }),
+
+  rest.get(`${url}reviews/detail/${_id}`, async (req, res, ctx) => {
+    return await res.once(
+      ctx.status(200),
+      ctx.json({ review: mockReviews[0] })
+    );
+  }),
+
+  rest.get(`${url}reviews/detail/${_id}`, async (req, res, ctx) => {
+    return await res.once(
+      ctx.status(500),
+      ctx.json({ error: "No podemos mostrar la reseña en estos momentos." })
+    );
+  }),
 ];
