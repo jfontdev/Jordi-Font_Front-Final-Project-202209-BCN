@@ -3,8 +3,13 @@ import { BrowserRouter } from "react-router-dom";
 import renderWithProviders from "../../mocks/renderWithProviders";
 import { mockEmptyReview } from "../../mocks/review/mockReview";
 import { mockErrorModal } from "../../mocks/ui/mockErrorModal";
+import { mockTriggeredLoader } from "../../mocks/ui/mockLoading";
 import { mockSuccessModal } from "../../mocks/ui/mockSuccessModal";
 import { mockUserInitialState } from "../../mocks/user/mockUser";
+import {
+  closeLoadingActionCreator,
+  uiReducer,
+} from "../../redux/features/uiSlice/uiSlice";
 import Layout from "./Layout";
 
 describe("Given a Layout component", () => {
@@ -60,6 +65,29 @@ describe("Given a Layout component", () => {
       const modal = screen.queryByText(modalError);
 
       expect(modal).toBeInTheDocument();
+    });
+  });
+
+  describe("When it renders the loader and the page state doesn't require the loader anymore", () => {
+    test("Then it should dispatch an action to close the loader", () => {
+      const currentUiState = mockTriggeredLoader;
+
+      renderWithProviders(<Layout />, {
+        preloadedState: {
+          ui: currentUiState,
+          user: mockUserInitialState,
+          review: mockEmptyReview,
+        },
+      });
+
+      const newState = uiReducer(
+        mockTriggeredLoader,
+        closeLoadingActionCreator()
+      );
+
+      const expectedUiState = { ...currentUiState, isLoading: false };
+
+      expect(newState).toStrictEqual(expectedUiState);
     });
   });
 });
