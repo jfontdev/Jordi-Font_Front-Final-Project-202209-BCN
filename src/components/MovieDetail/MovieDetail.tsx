@@ -7,8 +7,8 @@ const MovieDetail = (): JSX.Element => {
         <img
           src="../../../images/Piratas Del Caribe La Maldicion De La Perla Negra.webp"
           alt="Pirates of the caribbean movie poster"
-          height="518"
-          width="350"
+          height="460"
+          width="338"
           className="movie-poster"
         />
       </div>
