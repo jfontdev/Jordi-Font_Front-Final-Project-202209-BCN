@@ -5,4 +5,5 @@ export interface OpenModalPayload {
 
 export interface UiState extends OpenModalPayload {
   isOpen: boolean;
+  isLoading?: boolean;
 }
