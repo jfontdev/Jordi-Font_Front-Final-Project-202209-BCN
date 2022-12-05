@@ -21,12 +21,9 @@ const MovieDetailStyled = styled.article`
 
   .movie-poster {
     margin-top: ${mainTheme.pxToRem(60)};
-    margin-right: ${mainTheme.pxToRem(10)};
+    margin-right: ${mainTheme.pxToRem(15)};
     margin-left: ${mainTheme.pxToRem(15)};
     border-radius: ${mainTheme.sizes.button.borderRadius};
-    object-fit: cover;
-    width: 90%;
-    height: 100%;
     filter: drop-shadow(5px 5px 5px #666666);
   }
 
