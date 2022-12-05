@@ -1,4 +1,7 @@
-import { mockReviewToDelete } from "../../../mocks/review/mockReview";
+import {
+  mockReviews,
+  mockReviewToDelete,
+} from "../../../mocks/review/mockReview";
 import { mockReviewList } from "../../../mocks/review/mockReviewList";
 import {
   createReviewActionCreator,
@@ -6,6 +9,7 @@ import {
   loadReviewsActionCreator,
   reviewsReducer,
   initialState,
+  getReviewByIdActionCreator,
 } from "./reviewsSlice";
 import { Reviews, ReviewsState } from "./types";
 
@@ -70,6 +74,21 @@ describe("Given the reviewsReducer", () => {
       const newState = reviewsReducer(initialState, action);
 
       expect(newState).toStrictEqual(expectedNewReviewList);
+    });
+  });
+
+  describe("When it is invoked with getReviewById", () => {
+    test("Then it should receive a Review", () => {
+      const action = getReviewByIdActionCreator(mockReviews[0]);
+      const expectedState = {
+        ...initialState,
+        reviewList: [],
+        review: mockReviews[0],
+      };
+
+      const newState = reviewsReducer(initialState, action);
+
+      expect(newState).toStrictEqual(expectedState);
     });
   });
 });
