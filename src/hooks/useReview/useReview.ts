@@ -89,28 +89,30 @@ const useReview = () => {
     }
   };
 
-  const getReviewById = async (idReview: string) => {
-    dispatch(triggerLoadingActionCreator());
-    try {
-      const response = await axios.get(`${url}reviews/detail/${idReview}`);
+  const getReviewById = useCallback(
+    async (idReview: string) => {
+      dispatch(triggerLoadingActionCreator());
+      try {
+        const response = await axios.get(`${url}reviews/detail/${idReview}`);
 
-      const responseData = response.data;
+        const responseData = response.data;
 
-      const { review } = responseData;
+        const { review } = responseData;
 
-      dispatch(closeLoadingActionCreator);
-      dispatch(getReviewByIdActionCreator(review));
-    } catch (error: unknown) {
-      dispatch(closeLoadingActionCreator());
-      dispatch(
-        openModalActionCreator({
-          isError: true,
-          message: "No podemos mostrar la reseña en estos momentos.",
-        })
-      );
-    }
-  };
-
+        dispatch(closeLoadingActionCreator());
+        dispatch(getReviewByIdActionCreator(review));
+      } catch (error: unknown) {
+        dispatch(closeLoadingActionCreator());
+        dispatch(
+          openModalActionCreator({
+            isError: true,
+            message: "No podemos mostrar la reseña en estos momentos.",
+          })
+        );
+      }
+    },
+    [dispatch, url]
+  );
   return { loadReviewsList, deleteReview, createReview, getReviewById };
 };
 
