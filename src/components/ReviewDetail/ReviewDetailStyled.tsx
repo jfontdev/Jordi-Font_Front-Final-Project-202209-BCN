@@ -2,16 +2,18 @@ import styled from "styled-components";
 import mainTheme from "../../styles/mainTheme";
 
 const ReviewDetailStyled = styled.article`
-  border: 2px solid ${mainTheme.colors.review.dark};
   display: flex;
   flex-direction: column;
   justify-content: center;
   width: 90%;
-  margin-top: ${mainTheme.pxToRem(33)};
   margin-left: ${mainTheme.pxToRem(20)};
   margin-right: ${mainTheme.pxToRem(20)};
   .review-container {
     margin-left: ${mainTheme.pxToRem(10)};
+    margin-bottom: ${mainTheme.pxToRem(10)};
+  }
+  .review-title {
+    margin-top: ${mainTheme.pxToRem(10)};
   }
   .review-text {
     margin-right: ${mainTheme.pxToRem(10)};
