@@ -1,6 +1,6 @@
 export interface ReviewsState {
   reviewList: Reviews;
-  review?: {};
+  review?: Review;
 }
 
 export interface Review {
