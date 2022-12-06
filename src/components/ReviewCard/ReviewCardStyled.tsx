@@ -13,6 +13,12 @@ const ReviewCardStyled = styled.article`
   .review-container {
     margin-left: ${mainTheme.pxToRem(10)};
   }
+  .review-title {
+    margin-top: ${mainTheme.pxToRem(10)};
+    text-decoration: none;
+    color: #262930;
+    font-weight: 600;
+  }
   .review-text {
     margin-right: ${mainTheme.pxToRem(10)};
   }
