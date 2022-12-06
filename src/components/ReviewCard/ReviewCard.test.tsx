@@ -1,5 +1,6 @@
 import { screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { BrowserRouter } from "react-router-dom";
 import renderWithProviders from "../../mocks/renderWithProviders";
 import { mockReviews } from "../../mocks/review/mockReview";
 import ReviewCard from "./ReviewCard";
@@ -20,13 +21,15 @@ describe("Given a ReviewCard component", () => {
         "../../../images/Piratas Del Caribe La Maldicion De La Perla Negra.webp";
 
       renderWithProviders(
-        <ReviewCard
-          id=""
-          title={expectedReviewTitle}
-          review="Siempre la recordaréis como la película que convirtió a Johnny Depp en una superestrella y casi le hace ganar un Oscar. El hecho de que no ganara no es un problema, ya que gracias a él esta es la mejor película de piratas jamás realizada."
-          rating={10}
-          favoriteScene={expectedReviewScene}
-        />
+        <BrowserRouter>
+          <ReviewCard
+            id=""
+            title={expectedReviewTitle}
+            review="Siempre la recordaréis como la película que convirtió a Johnny Depp en una superestrella y casi le hace ganar un Oscar. El hecho de que no ganara no es un problema, ya que gracias a él esta es la mejor película de piratas jamás realizada."
+            rating={10}
+            favoriteScene={expectedReviewScene}
+          />
+        </BrowserRouter>
       );
 
       const reviewTitle = screen.getByRole("heading", {
@@ -45,13 +48,15 @@ describe("Given a ReviewCard component", () => {
       const expectedReviewButton = "Borrar";
 
       renderWithProviders(
-        <ReviewCard
-          id={mockReviews[0]._id}
-          title=""
-          review=""
-          rating={0}
-          favoriteScene=""
-        />
+        <BrowserRouter>
+          <ReviewCard
+            id={mockReviews[0]._id}
+            title=""
+            review=""
+            rating={0}
+            favoriteScene=""
+          />
+        </BrowserRouter>
       );
 
       const reviewButton = screen.queryByRole("button", {

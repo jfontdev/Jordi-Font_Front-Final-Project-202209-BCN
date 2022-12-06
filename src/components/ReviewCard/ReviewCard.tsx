@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useReview from "../../hooks/useReview/useReview";
 import Button from "../Button/Button";
 import ReviewCardStyled from "./ReviewCardStyled";
@@ -21,7 +22,9 @@ const ReviewCard = ({
   return (
     <ReviewCardStyled>
       <div className="review-container">
-        <h2 className="review-title">{title}</h2>
+        <Link to={`/review-detail/${id}`}>
+          <h2 className="review-title">{title}</h2>
+        </Link>
         <p className="review-text">{review}</p>
         <span className="review-rating">Calificación: {rating}/10</span>
         <div className="review-scene-container">

@@ -4,6 +4,7 @@ import CreateReview from "../../pages/CreateReview/CreateReview";
 import FilmDetail from "../../pages/FilmDetail/FilmDetail";
 import HomePage from "../../pages/Homepage/HomePage";
 import Register from "../../pages/Register/Register";
+import Detail from "../../pages/Detail/Detail";
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <Route path="/register" element={<Register />}></Route>
         <Route path="/film-detail" element={<FilmDetail />}></Route>
         <Route path="/create-review" element={<CreateReview />}></Route>
+        <Route path="/review-detail/:id" element={<Detail />}></Route>
       </Route>
     </Routes>
   );

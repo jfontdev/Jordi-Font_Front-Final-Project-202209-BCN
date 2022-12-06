@@ -1,23 +1,18 @@
 import { screen } from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 import renderWithProviders from "../../mocks/renderWithProviders";
+import { mockReviews } from "../../mocks/review/mockReview";
 import ReviewDetail from "./ReviewDetail";
 
 describe("Given a ReviewDetail component", () => {
   describe("When it is rendered", () => {
     test("Then it should display a review with an image that have an attribute src and a review title 'Maravillosa'", () => {
-      const expectedReviewTitle = "Maravillosa";
-      const expectedReviewScene =
-        "../../../images/Piratas Del Caribe La Maldicion De La Perla Negra.webp";
+      const expectedReviewTitle = "abc";
+      const expectedReviewScene = "abc.jpg";
 
       renderWithProviders(
         <BrowserRouter>
-          <ReviewDetail
-            title={expectedReviewTitle}
-            review="Siempre la recordaréis como la película que convirtió a Johnny Depp en una superestrella y casi le hace ganar un Oscar. El hecho de que no ganara no es un problema, ya que gracias a él esta es la mejor película de piratas jamás realizada."
-            rating={10}
-            favoriteScene={expectedReviewScene}
-          />
+          <ReviewDetail review={mockReviews[0]} />
         </BrowserRouter>
       );
 

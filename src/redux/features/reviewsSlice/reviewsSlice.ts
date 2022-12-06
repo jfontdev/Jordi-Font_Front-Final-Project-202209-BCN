@@ -3,7 +3,7 @@ import { Review, Reviews, ReviewsState } from "./types";
 
 export const initialState: ReviewsState = {
   reviewList: [],
-  review: {},
+  review: {} as Review,
 };
 
 const reviewSlice = createSlice({
