@@ -6,6 +6,7 @@ const RegisterStyled = styled.main`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-bottom: ${mainTheme.pxToRem(10)};
   h1 {
     justify-content: center;
     align-items: center;
