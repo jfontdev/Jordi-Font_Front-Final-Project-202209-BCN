@@ -5,7 +5,7 @@ import { useAppSelector } from "../../redux/hooks";
 import ReviewCard from "../ReviewCard/ReviewCard";
 import ReviewCardListStyled from "./ReviewCardListStyled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons/faPlus";
 import scrollToTop from "../../utils/scrollToTop";
 
 const ReviewCardList = (): JSX.Element => {
