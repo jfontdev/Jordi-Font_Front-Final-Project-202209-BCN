@@ -17,6 +17,7 @@ const ReviewCardStyled = styled.article`
     margin-top: ${mainTheme.pxToRem(10)};
     text-decoration: none;
     color: #262930;
+    text-decoration-color: ${mainTheme.colors.button.medium};
     font-weight: 600;
   }
   .review-text {
@@ -27,7 +28,11 @@ const ReviewCardStyled = styled.article`
     margin-right: ${mainTheme.pxToRem(10)};
     overflow: hidden;
   }
+  .review-scene-container-title {
+    font-weight: 600;
+  }
   .review-scene {
+    border: 1px solid ${mainTheme.colors.review.dark};
     margin-top: ${mainTheme.pxToRem(10)};
     width: 100%;
     height: 100%;
