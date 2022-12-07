@@ -6,6 +6,7 @@ import ReviewCard from "../ReviewCard/ReviewCard";
 import ReviewCardListStyled from "./ReviewCardListStyled";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import scrollToTop from "../../utils/scrollToTop";
 
 const ReviewCardList = (): JSX.Element => {
   const reviewList = useAppSelector(({ review }) => review.reviewList);
@@ -13,28 +14,31 @@ const ReviewCardList = (): JSX.Element => {
 
   useEffect(() => {
     loadReviewsList();
+    scrollToTop();
   }, [loadReviewsList]);
 
   return (
     <ReviewCardListStyled className="reviews-list">
       <h2 className="reviews-title">Reseñas:</h2>
-      <Link to={"/create-review"}>
+      <Link to={"/create-review"} onClick={scrollToTop}>
         <span className="span-link">
           <FontAwesomeIcon icon={faPlus} className="add-icon" />
           Añadir Reseña
         </span>
       </Link>
-      {reviewList.map((review, index) => (
-        <li key={index} className="reviews-list-container">
-          <ReviewCard
-            id={review._id!}
-            title={review.title}
-            review={review.reviewText}
-            rating={review.rating}
-            favoriteScene={review.favoriteScene}
-          />
-        </li>
-      ))}
+      <ul>
+        {reviewList.map((review, index) => (
+          <li key={index} className="reviews-list-container">
+            <ReviewCard
+              id={review._id!}
+              title={review.title}
+              review={review.reviewText}
+              rating={review.rating}
+              favoriteScene={review.favoriteScene}
+            />
+          </li>
+        ))}
+      </ul>
     </ReviewCardListStyled>
   );
 };
