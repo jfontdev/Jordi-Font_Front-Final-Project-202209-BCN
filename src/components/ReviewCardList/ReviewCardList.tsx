@@ -28,7 +28,7 @@ const ReviewCardList = (): JSX.Element => {
       </Link>
       <ul>
         {reviewList.map((review) => (
-          <li key={review._id!} className="reviews-list-container">
+          <li key={review._id} className="reviews-list-container">
             <ReviewCard
               id={review._id!}
               title={review.title}
