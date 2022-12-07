@@ -19,9 +19,9 @@ const Detail = (): JSX.Element => {
     <DetailStyled>
       <h1>Reseña</h1>
       <ReviewDetail review={review!} />
-      <span className="span-question">Cambiaste de opinion?</span>
+      <span className="span-question">Ver más reseñas?</span>
       <Link to={"/film-detail"}>
-        <span className="span-link">Vuelve atras</span>
+        <span className="span-link">Vuelve atrás</span>
       </Link>
     </DetailStyled>
   );

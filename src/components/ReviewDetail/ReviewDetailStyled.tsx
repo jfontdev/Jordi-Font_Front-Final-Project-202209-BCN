@@ -23,7 +23,11 @@ const ReviewDetailStyled = styled.article`
     margin-right: ${mainTheme.pxToRem(10)};
     overflow: hidden;
   }
+  .review-scene-container-title {
+    font-weight: 600;
+  }
   .review-scene {
+    border: 1px solid ${mainTheme.colors.review.dark};
     margin-top: ${mainTheme.pxToRem(10)};
     width: 100%;
     height: 100%;

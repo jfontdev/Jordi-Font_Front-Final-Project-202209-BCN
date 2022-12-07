@@ -5,7 +5,7 @@ const ModalStyled = styled.div`
   position: fixed;
   font-size: 1.5rem;
   border-radius: 1rem;
-  width: 60vw;
+  width: 70vw;
   height: 30vh;
   left: 0;
   right: 0;
