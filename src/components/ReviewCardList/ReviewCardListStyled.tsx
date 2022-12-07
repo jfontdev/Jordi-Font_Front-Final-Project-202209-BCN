@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import mainTheme from "../../styles/mainTheme";
 
-const ReviewCardListStyled = styled.ul`
+const ReviewCardListStyled = styled.article`
   display: flex;
   flex-direction: column;
   list-style: none;
@@ -11,6 +11,13 @@ const ReviewCardListStyled = styled.ul`
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   padding-inline-start: 0px;
+  margin-bottom: ${mainTheme.pxToRem(20)};
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
 
   .reviews.list.container {
     margin-left: ${mainTheme.pxToRem(20)};
